@@ -1,6 +1,6 @@
 <?php
 
-namespace todo\Task;
+namespace Todo\Task;
 
 class TaskService
 {

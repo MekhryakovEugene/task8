@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use App\Http\Requests\TodoRequest;
-//use todo\Task\TaskService;
+use Todo\Task\TaskService;
 
 class TodoController extends Controller
 {
 
-    //private TaskService $taskService;
+    private TaskService $taskService;
 
-    /*public function __construct(TaskService $taskService)
+    public function __construct(TaskService $taskService)
     {
-    }*/
+    }
 
     public function index()
 	{
