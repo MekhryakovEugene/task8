@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use App\Http\Requests\TodoRequest;
+use Todo\Task\TaskEntity;
 use Todo\Task\TaskService;
+use Todo\Task\TaskCreatePayload;
+use Todo\Task\TaskRepository;
 
 class TodoController extends Controller
 {
 
-    private TaskService $taskService;
+    public TaskService $taskService;
+    private TaskEntity $taskEntity;
 
     public function __construct(TaskService $taskService)
     {
@@ -21,17 +25,8 @@ class TodoController extends Controller
         return view('index')->with('todos', $todo);
     }
 
-    public function create(/*$request*/)
+    public function create()
 	{
-	    /*
-	    $taskCreatePayload = new \TaskCreatePayload(
-	        $request->getName(),
-            $request->getDescription(),
-            $request->getStatus()
-        );
-	    $this->taskService->create($taskCreatePayload);
-	    */
-
         return view('create');
     }
 
@@ -53,7 +48,6 @@ class TodoController extends Controller
 
     public function update(Todo $todo, TodoRequest $request)
 	{
-
         $data = $request->validated();
 
 		$todo->name = $data['name'];
@@ -67,6 +61,29 @@ class TodoController extends Controller
     public function delete(Todo $todo)
 	{
         $todo->delete();
+        return redirect('/');
+    }
+
+    public function newStore(TodoRequest $request)
+    {
+        $data = $request->validated();
+
+        /*$todoEntity = new TaskEntity(
+            $data['name'],
+            $data['description'],
+            1
+        );*/
+        $todoRepository = new TaskRepository();
+        $todoService = new TaskService($todoRepository);
+
+        $taskCreatePayload = new TaskCreatePayload(
+            $data['name'],
+            $data['description'],
+            0
+        );
+        $todoService->create($taskCreatePayload);
+
+        session()->flash('success', 'Todo created succesfully');
         return redirect('/');
     }
 

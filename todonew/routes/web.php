@@ -21,6 +21,6 @@ Route::get('details/{todo}', [TodoController::class, 'details']);
 Route::get('edit/{todo}', [TodoController::class, 'edit']);
 Route::post('update/{todo}', [TodoController::class, 'update']);
 Route::get('delete/{todo}', [TodoController::class, 'delete']);
-Route::post('store-data', [TodoController::class, 'store']);
+Route::post('store-data', [TodoController::class, 'newStore']);
 Route::post('store-sub-data/{todo}', [TodoController::class, 'store_sub']);
 Route::post('/', [TodoController::class, 'status_update']);

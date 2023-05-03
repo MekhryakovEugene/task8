@@ -1,11 +1,12 @@
 <?php
 
+namespace Todo\Task;
 
 class TaskEntity
 {
     private string $name;
     private string $description;
-    private Enum $status;
+    private string $status;
 
     public function __construct(
         $name,
@@ -20,16 +21,16 @@ class TaskEntity
 
     public function getName():string
     {
-        $this->name;
+        return $this->name;
     }
 
     public function getDescription():string
     {
-        $this->description;
+        return $this->description;
     }
 
-    public function getStatus():Enum
+    public function getStatus():string
     {
-        $this->status;
+        return $this->status;
     }
 }
