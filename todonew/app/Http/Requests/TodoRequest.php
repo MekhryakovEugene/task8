@@ -30,6 +30,21 @@ class TodoRequest extends FormRequest
         ];
     }
 
+    public function getName():string
+    {
+        return $this->name;
+    }
+
+    public function getDescription():string
+    {
+        return $this->description;
+    }
+
+    public function getStatus():string
+    {
+        return 0;
+    }
+
 	/*public function messages()
     {
         return [

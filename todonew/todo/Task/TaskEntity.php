@@ -1,6 +1,7 @@
 <?php
 
 namespace Todo\Task;
+use App\Models\Todo;
 
 class TaskEntity
 {
@@ -32,5 +33,13 @@ class TaskEntity
     public function getStatus():string
     {
         return $this->status;
+    }
+
+    public function setId($taskId):string
+    {
+        $lastRecord = Todo::latest()->first();
+        $lastRecordId = $lastRecord->id;
+
+        return $lastRecordId;
     }
 }
